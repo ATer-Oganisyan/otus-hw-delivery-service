@@ -1,0 +1,6 @@
+create table slots (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+slot_description VARCHAR(255) NOT NULL UNIQUE KEY,
+order_id INT NULL,
+status_id TINYINT NOT NULL DEFAULT 1
+);

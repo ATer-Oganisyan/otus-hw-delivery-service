@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: migration
+        image: arsenteroganisyan/otus-order-service-sql-migrator:v8
+        env:
+          - name: MYSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: config
+                key: host
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: user
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: config
+                key: db
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: password
+  backoffLimit: 4

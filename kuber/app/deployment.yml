@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delivery-service-deployment
+  labels:
+    app: delivery-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-service
+  template:
+    metadata:
+      labels:
+        app: stock-service
+    spec:
+      containers:
+      - name: stock-service
+        image: arsenteroganisyan/delivery-service:v1
+
+        ports:
+        - containerPort: 8000
+        env:
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: config
+                key: port
+          - name: HOST
+            valueFrom:
+              configMapKeyRef:
+                name: config
+                key: host
+          - name: USER
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: user
+          - name: DB
+            valueFrom:
+              configMapKeyRef:
+                name: config
+                key: db
+          - name: PASSWRORD
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: password
