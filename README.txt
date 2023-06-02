@@ -15,7 +15,7 @@ Installation manual
 Run:
 
 alias k=kubectl
-git clone https://github.com/ATer-Oganisyan/otus-hw-order-service.git
+git clone https://github.com/ATer-Oganisyan/otus-hw-delivery-service.git
 cd ./otus-hw-order-service
 helm repo add nginx-stable https://helm.nginx.com/stable
 helm repo add myZql https://charts.bitnami.com/bitnami
@@ -35,11 +35,11 @@ Enjoy :)
 
 To build app container run:
 
-docker build -t arsenteroganisyan/stock-service:v20 /Users/arsen/otus-hw-stock-service --no-cache --platform linux/amd64
+docker build -t arsenteroganisyan/delivery-service:v1 /Users/arsen/otus-hw-delivery-service --no-cache --platform linux/amd64
 
 
 
 
 To build DB migration container:
  
-docker build -t arsenteroganisyan/otus-stock-service-sql-migrator:v1 /Users/arsen/otus-hw-stock-service/kuber/mysql/migrations --no-cache --platform linux/amd64
+docker build -t arsenteroganisyan/otus-delivery-service-sql-migrator:v1 /Users/arsen/otus-hw-delivery-service/kuber/mysql/migrations --no-cache --platform linux/amd64
