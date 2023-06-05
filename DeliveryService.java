@@ -24,7 +24,7 @@ public class DeliveryService {
         String user = args[2];
         String password = args[3];
         String db = args[4];
-        System.out.println("Hardcode version: v1");
+        System.out.println("Hardcode version: v2");
         System.out.println("Config version: " + version);
         System.out.println(host);
         System.out.println(port);
@@ -46,19 +46,19 @@ public class DeliveryService {
             if ("/health".equals(path)) {
                 routeHealth(t);
                 System.out.println("matched");
-            } else if ("/accquire-slot".equals(path)) { // by catalog id
+            } else if ("/accquire-slot".equals(path)) { // by id
                 accquireSlot(t);
                 System.out.println("accquireItem");
-            } else if ("/add-slot".equals(path)) { // by orderId
+            } else if ("/add-slot".equals(path)) {
                 addSlot(t);
                 System.out.println("release-order-items");
-            } else if ("/release-slot".equals(path)) { // by catalog id
+            } else if ("/release-slot".equals(path)) { // by id
                 releaseSlot(t);
                 System.out.println("release-item");
-            } else if ("/get-accessable-slots".equals(path)) { // by catalog id
+            } else if ("/get-accessable-slots".equals(path)) {
                 getAvailableSlots(t);
                 System.out.println("fill-item");
-            }  else if ("/commit-delivery".equals(path)) { // by catalog id
+            }  else if ("/commit-delivery".equals(path)) { // by order_id
                 commitDelivery(t);
                 System.out.println("fill-item");
             } else {
@@ -212,7 +212,7 @@ public class DeliveryService {
         String r;
         System.out.println("start try-catch");
         try {
-            String sql = "select id, slot_description from slots where order_id = null and status_id = " + SLOT_STATUS_AVAIALBALE;
+            String sql = "select id, slot_description from slots where order_id is null and status_id = " + SLOT_STATUS_AVAIALBALE;
             Statement stmt=connection.createStatement();
             ResultSet rs=stmt.executeQuery(sql);
             System.out.println("getAvailableSlots sql: " + sql);
