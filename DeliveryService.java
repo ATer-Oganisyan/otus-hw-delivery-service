@@ -24,7 +24,7 @@ public class DeliveryService {
         String user = args[2];
         String password = args[3];
         String db = args[4];
-        System.out.println("Hardcode version: v4");
+        System.out.println("Hardcode version: v5");
         System.out.println("Config version: " + version);
         System.out.println(host);
         System.out.println(port);
@@ -306,7 +306,7 @@ public class DeliveryService {
             }
 
             stmt=connection.createStatement();
-            sql = "update slot set order_id = null, status_id = " + SLOT_STATUS_AVAIALBALE + " where id = " + slotId;
+            sql = "update slots set order_id = null, status_id = " + SLOT_STATUS_AVAIALBALE + " where id = " + slotId;
             System.out.println("release slot update sql: " + sql);
             stmt.executeUpdate(sql);
             r = "";
