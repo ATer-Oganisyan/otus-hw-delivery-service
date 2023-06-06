@@ -24,7 +24,7 @@ public class DeliveryService {
         String user = args[2];
         String password = args[3];
         String db = args[4];
-        System.out.println("Hardcode version: v3");
+        System.out.println("Hardcode version: v4");
         System.out.println("Config version: " + version);
         System.out.println(host);
         System.out.println(port);
@@ -289,7 +289,7 @@ public class DeliveryService {
             String slotId = q.get("slot_id");
             connection.setAutoCommit(false);
 
-            String sql = "select order_id from slots where id = " + slotId + "and order_id = " + orderId + " and status_id = " + SLOT_HOLDED + " for update";
+            String sql = "select order_id from slots where id = " + slotId + " and order_id = " + orderId + " and status_id = " + SLOT_HOLDED + " for update";
             System.out.println("select releaseSlot sql: " + sql);
             Statement stmt=connection.createStatement();
             ResultSet rs=stmt.executeQuery(sql);

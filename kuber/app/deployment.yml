@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: delivery-service
-        image: arsenteroganisyan/delivery-service:v3
+        image: arsenteroganisyan/delivery-service:v4
 
         ports:
         - containerPort: 8000
