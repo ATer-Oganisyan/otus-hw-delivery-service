@@ -24,7 +24,7 @@ public class DeliveryService {
         String user = args[2];
         String password = args[3];
         String db = args[4];
-        System.out.println("Hardcode version: v6");
+        System.out.println("Hardcode version: v7");
         System.out.println("Config version: " + version);
         System.out.println(host);
         System.out.println(port);
@@ -156,13 +156,13 @@ public class DeliveryService {
             String slotId = q.get("slot_id");
             connection.setAutoCommit(false);
 
-            String sql = "select order_id from slots where id = " + slotId + " and status_id = " + SLOT_STATUS_AVAIALBALE + " and order_id = " + SLOT_HOLDED + " for update";
+            String sql = "select order_id from slots where id = " + slotId + " and status_id = " + SLOT_STATUS_AVAIALBALE + " and order_id = " + orderId + " for update";
             System.out.println("select commitDelivery slot sql: " + sql);
             Statement stmt=connection.createStatement();
             ResultSet rs=stmt.executeQuery(sql);
             r = "";
             if (!rs.next()) {
-                r = "internal server error";
+                r = "holded slot is not found";
                 System.out.println("send headers");
                 t.sendResponseHeaders(409, r.length());
                 System.out.println("holded slot is not found");

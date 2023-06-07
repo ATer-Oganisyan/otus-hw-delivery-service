@@ -35,7 +35,7 @@ Enjoy :)
 
 To build app container run:
 
-docker build -t arsenteroganisyan/delivery-service:v6 /Users/arsen/otus-hw-delivery-service --no-cache --platform linux/amd64
+docker build -t arsenteroganisyan/delivery-service:v7 /Users/arsen/otus-hw-delivery-service --no-cache --platform linux/amd64
 
 
 
